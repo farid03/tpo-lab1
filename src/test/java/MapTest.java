@@ -71,7 +71,6 @@ public class MapTest {
     @Test
     @DisplayName("Check size correctness")
     void sizeTest() {
-
         assertEquals(0, map.size());
 
         int size = 50;
@@ -90,7 +89,6 @@ public class MapTest {
     @Test
     @DisplayName("Random operations")
     void big() {
-
         int size = 1000;
         for (int i = 0; i < size; i += 2) {
             assertTrue(map.insert(i, i));

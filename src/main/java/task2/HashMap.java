@@ -5,6 +5,8 @@ import org.apache.commons.math3.util.Pair;
 import java.util.*;
 
 public class HashMap<K extends Comparable<K>, V> {
+    private ArrayList<LinkedList<Pair<K, V>>> map;
+    private int size;
 
     public HashMap(int maxSize) {
         this.map = new ArrayList<>();
@@ -75,7 +77,4 @@ public class HashMap<K extends Comparable<K>, V> {
 
         map = newMap;
     }
-
-    private ArrayList<LinkedList<Pair<K, V>>> map;
-    private int size;
 }

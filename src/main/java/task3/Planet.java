@@ -1,7 +1,6 @@
 package task3;
 
 public class Planet {
-
     Color color;
     int popularity;
     int size;

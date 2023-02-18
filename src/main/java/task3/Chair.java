@@ -34,6 +34,4 @@ public class Chair {
     public void setSit(boolean sit) {
         this.sit = sit;
     }
-
-
 }

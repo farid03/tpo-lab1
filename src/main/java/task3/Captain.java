@@ -8,7 +8,7 @@ public class Captain extends Man {
         super(moodLevel, Mood.ANGRY, Color.GREEN);
     }
 
-    boolean destroy(Planet planet) {
+    public boolean destroy(Planet planet) {
         if (planet.isDestroyed()) {
             return false;
         } else {
@@ -51,6 +51,4 @@ public class Captain extends Man {
             return true;
         }
     }
-
-
 }
