@@ -1,5 +1,8 @@
 package task3;
 
+import lombok.Data;
+
+@Data
 public class Chair {
     Color color;
     int comfortability;
@@ -9,22 +12,6 @@ public class Chair {
         this.color = color;
         this.comfortability = comfortability;
         this.sit = sit;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public int getComfortability() {
-        return comfortability;
-    }
-
-    public void setComfortability(int comfortability) {
-        this.comfortability = comfortability;
     }
 
     public boolean isSit() {

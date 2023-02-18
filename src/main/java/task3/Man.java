@@ -1,7 +1,10 @@
 package task3;
 
+import lombok.Data;
+
 import java.util.Optional;
 
+@Data
 public abstract class Man {
     protected int moodLevel;
     protected Mood moodType;
@@ -15,36 +18,8 @@ public abstract class Man {
         this.chair = Optional.empty();
     }
 
-    public int getMoodLevel() {
-        return moodLevel;
-    }
-
-    public void setMoodLevel(int moodLevel) {
-        this.moodLevel = moodLevel;
-    }
-
-    public Mood getMoodType() {
-        return moodType;
-    }
-
-    public void setMoodType(Mood moodType) {
-        this.moodType = moodType;
-    }
-
-    public Color getBodyColor() {
-        return bodyColor;
-    }
-
-    public void setBodyColor(Color bodyColor) {
-        this.bodyColor = bodyColor;
-    }
-
     public Chair getChair() {
         return chair.orElse(null);
-    }
-
-    public void setChair(Chair chair) {
-        this.chair = Optional.ofNullable(chair);
     }
 
     abstract public boolean scream(Man other);

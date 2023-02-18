@@ -1,5 +1,8 @@
 package task3;
 
+import lombok.Data;
+
+@Data
 public class Planet {
     Color color;
     int popularity;
@@ -13,35 +16,7 @@ public class Planet {
         this.destroyed = false;
     }
 
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public int getPopularity() {
-        return popularity;
-    }
-
-    public void setPopularity(int popularity) {
-        this.popularity = popularity;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
     public boolean isDestroyed() {
         return destroyed;
-    }
-
-    public void setDestroyed(boolean destroyed) {
-        this.destroyed = destroyed;
     }
 }
