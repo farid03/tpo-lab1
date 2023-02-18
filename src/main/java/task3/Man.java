@@ -36,7 +36,7 @@ public abstract class Man {
         this.bodyColor = bodyColor;
     }
 
-    abstract public void scream(Man other);
+    abstract public boolean scream(Man other);
 
 
 }

@@ -17,9 +17,15 @@ public class Captain extends Man {
     }
 
     @Override
-    public void scream(Man other) {
-        other.moodLevel = Math.max(other.moodLevel - 5, 0);
-        this.moodLevel += 5;
+    public boolean scream(Man other) {
+        if (other.moodLevel >= 5) {
+            other.moodLevel = other.moodLevel - 5;
+            this.moodLevel += 5;
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 }
