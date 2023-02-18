@@ -23,12 +23,34 @@ class MapArgumentsProvider implements ArgumentsProvider {
     }
 }
 
+class HashArgumentsProvider implements ArgumentsProvider {
+    @Override
+    public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
+        return Stream.of(
+                Arguments.of(1, (Integer.valueOf(1)).hashCode() % 15),
+                Arguments.of(0, (Integer.valueOf(0)).hashCode() % 15),
+                Arguments.of(1 << 31 - 1, (Integer.valueOf(1 << 31 - 1)).hashCode() % 15),
+                Arguments.of(13, (Integer.valueOf(13)).hashCode() % 15),
+                Arguments.of(128, (Integer.valueOf(128)).hashCode() % 15),
+                Arguments.of(595959, (Integer.valueOf(595959)).hashCode() % 15),
+                Arguments.of(-100000, (Integer.valueOf(-100000)).hashCode() % 15)
+        );
+    }
+}
+
 public class MapTest {
     private HashMap<Integer, Integer> map;
 
     @BeforeEach
     void initMap() {
-        map = new HashMap<>(5);
+        map = new HashMap<>(15);
+    }
+
+    @ParameterizedTest
+    @DisplayName("Check hash correctness")
+    @ArgumentsSource(HashArgumentsProvider.class)
+    void hashTest(int key, int result) {
+        assertEquals(result, map.hash(key));
     }
 
     @ParameterizedTest
@@ -92,4 +114,5 @@ public class MapTest {
             assertFalse(map.erase(i));
         }
     }
+
 }

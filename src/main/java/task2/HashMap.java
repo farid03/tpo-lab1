@@ -14,8 +14,12 @@ public class HashMap<K extends Comparable<K>, V> {
         this.size = 0;
     }
 
+    public int hash(K key) {
+        return key.hashCode() % map.size();
+    }
+
     public boolean insert(K key, V value) {
-        int idx = key.hashCode() % map.size();
+        int idx = hash(key);
         if (map.get(idx).stream()
                 .anyMatch(el -> el.getKey().compareTo(key) == 0)) {
             return false;
@@ -28,7 +32,7 @@ public class HashMap<K extends Comparable<K>, V> {
     }
 
     public boolean erase(K key) {
-        int idx = key.hashCode() % map.size();
+        int idx = hash(key);
 
         if (map.get(idx).removeIf(el -> el.getKey().compareTo(key) == 0)) {
             size--;
@@ -39,7 +43,7 @@ public class HashMap<K extends Comparable<K>, V> {
     }
 
     public Optional<V> find(K key) {
-        int idx = key.hashCode() % map.size();
+        int idx = hash(key);
         return map.get(idx).stream()
                 .filter(el -> el.getKey().compareTo(key) == 0)
                 .map(Pair::getValue)
