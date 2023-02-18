@@ -1,15 +1,19 @@
 package task3;
 
+import java.util.Optional;
+
 public abstract class Man {
 
     protected int moodLevel;
     protected Mood moodType;
     protected Color bodyColor;
+    protected Optional<Chair> chair;
 
     public Man(int moodLevel, Mood moodType, Color bodyColor) {
         this.moodLevel = moodLevel;
         this.moodType = moodType;
         this.bodyColor = bodyColor;
+        this.chair = Optional.empty();
     }
 
     public int getMoodLevel() {
@@ -37,6 +41,7 @@ public abstract class Man {
     }
 
     abstract public boolean scream(Man other);
-
+    abstract public boolean sit(Chair chair);
+    abstract public boolean up();
 
 }

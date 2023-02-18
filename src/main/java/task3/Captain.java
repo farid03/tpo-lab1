@@ -1,5 +1,7 @@
 package task3;
 
+import java.util.Optional;
+
 public class Captain extends Man {
 
     public Captain(int moodLevel) {
@@ -25,7 +27,30 @@ public class Captain extends Man {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public boolean sit(Chair chair) {
+        if (chair.isSit() || this.chair.isPresent()) {
+            return false;
+        } else {
+            chair.setSit(true);
+            this.chair = Optional.of(chair);
+            return true;
+        }
 
     }
+
+    @Override
+    public boolean up() {
+        if (this.chair.isEmpty()) {
+            return false;
+        } else {
+            this.chair.get().setSit(false);
+            this.chair = Optional.empty();
+            return true;
+        }
+    }
+
 
 }
