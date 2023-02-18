@@ -7,8 +7,9 @@ public class Secant {
         double accuracy = 0.01;
         double computedCos = cos(x, accuracy);
 
-        if (Math.abs(computedCos) < accuracy)
+        if (Math.abs(computedCos) < accuracy) {
             return Double.POSITIVE_INFINITY;
+        }
 
         return 1 / cos(x, accuracy);
     }
@@ -30,8 +31,9 @@ public class Secant {
     }
 
     public static double computeCosTaylorSeriesMember(double x, int n) {
-        if (n < 0)
+        if (n < 0) {
             throw new IllegalArgumentException("Argument n can't be negative: n = " + n);
+        }
 
         return Math.pow(-1, n) * Math.pow(x, 2 * n) / CombinatoricsUtils.factorial(2 * n);
     }

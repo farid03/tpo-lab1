@@ -1,3 +1,7 @@
+package task2;
+
+import org.apache.commons.math3.util.Pair;
+
 import java.util.*;
 
 public class HashMap<K extends Comparable<K>, V> {
@@ -13,7 +17,7 @@ public class HashMap<K extends Comparable<K>, V> {
     public boolean insert(K key, V value) {
         int idx = key.hashCode() % map.size();
         if (map.get(idx).stream()
-                .anyMatch(el -> el.key.compareTo(key) == 0)) {
+                .anyMatch(el -> el.getKey().compareTo(key) == 0)) {
             return false;
         }
 
@@ -26,7 +30,7 @@ public class HashMap<K extends Comparable<K>, V> {
     public boolean erase(K key) {
         int idx = key.hashCode() % map.size();
 
-        if (map.get(idx).removeIf(el -> el.key.compareTo(key) == 0)) {
+        if (map.get(idx).removeIf(el -> el.getKey().compareTo(key) == 0)) {
             size--;
             return true;
         }
@@ -37,8 +41,8 @@ public class HashMap<K extends Comparable<K>, V> {
     public Optional<V> find(K key) {
         int idx = key.hashCode() % map.size();
         return map.get(idx).stream()
-                .filter(el -> el.key.compareTo(key) == 0)
-                .map(el -> el.value)
+                .filter(el -> el.getKey().compareTo(key) == 0)
+                .map(Pair::getValue)
                 .findAny();
     }
 
@@ -60,7 +64,7 @@ public class HashMap<K extends Comparable<K>, V> {
 
         for (var list : map) {
             for (var kv : list) {
-                newMap.get(kv.key.hashCode() % newSize)
+                newMap.get(kv.getKey().hashCode() % newSize)
                         .add(kv);
             }
         }
@@ -71,14 +75,3 @@ public class HashMap<K extends Comparable<K>, V> {
     private ArrayList<LinkedList<Pair<K, V>>> map;
     private int size;
 }
-
-class Pair<K, V> {
-    public Pair(K key, V value) {
-        this.key = key;
-        this.value = value;
-    }
-    
-    public K key;
-    public V value;
-}
-
