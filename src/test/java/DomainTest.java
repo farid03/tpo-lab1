@@ -42,6 +42,7 @@ public class DomainTest {
     public void manSitTest() {
         assertTrue(captain.sit(chair));
         assertTrue(chair.isSit());
+        assertEquals(captain.getChair(), chair);
     }
 
     @Test
@@ -49,8 +50,10 @@ public class DomainTest {
     public void chairRepeatedSitTest() {
         assertTrue(captain.sit(chair));
         assertTrue(chair.isSit());
+        assertEquals(captain.getChair(), chair);
 
         assertFalse(captain.sit(chair));
+        assertEquals(captain.getChair(), chair);
         assertTrue(chair.isSit());
     }
 
@@ -60,6 +63,7 @@ public class DomainTest {
         captain.sit(chair);
         assertTrue(captain.up());
         assertFalse(chair.isSit());
+        assertNull(captain.getChair());
     }
 
     @Test
@@ -68,8 +72,10 @@ public class DomainTest {
         captain.sit(chair);
         assertTrue(captain.up());
         assertFalse(chair.isSit());
+        assertNull(captain.getChair());
 
         assertFalse(captain.up());
+        assertNull(captain.getChair());
         assertFalse(chair.isSit());
     }
 

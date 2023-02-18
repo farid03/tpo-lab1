@@ -39,6 +39,14 @@ public abstract class Man {
         this.bodyColor = bodyColor;
     }
 
+    public Chair getChair() {
+        return chair.orElse(null);
+    }
+
+    public void setChair(Chair chair) {
+        this.chair = Optional.ofNullable(chair);
+    }
+
     abstract public boolean scream(Man other);
     abstract public boolean sit(Chair chair);
     abstract public boolean up();
