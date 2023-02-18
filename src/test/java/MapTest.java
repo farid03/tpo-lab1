@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.junit.jupiter.params.provider.ArgumentsSource;
-import task2.HashMap;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -34,62 +33,62 @@ public class MapTest {
     @ParameterizedTest
     @DisplayName("Check simple insert")
     @ArgumentsSource(MapArgumentsProvider.class)
-    void SimpleInsert(int k1, int v1) {
-        assertTrue(map.Insert(k1, v1));
+    void simpleInsert(int k1, int v1) {
+        assertTrue(map.insert(k1, v1));
     }
 
     @ParameterizedTest
     @DisplayName("Check simple erase")
     @ArgumentsSource(MapArgumentsProvider.class)
-    void SimpleEraseFalse(int k1, int v1) {
-        assertFalse(map.Erase(k1));
-        assertFalse(map.Erase(v1));
+    void simpleEraseFalse(int k1, int v1) {
+        assertFalse(map.erase(k1));
+        assertFalse(map.erase(v1));
     }
 
     @Test
     @DisplayName("Check size correctness")
     void sizeTest() {
 
-        assertEquals(0, map.Size());
+        assertEquals(0, map.size());
 
         int size = 50;
         for (int i = 0; i < size; ++i) {
-            assertTrue(map.Insert(i, i));
-            assertEquals(i + 1, map.Size());
+            assertTrue(map.insert(i, i));
+            assertEquals(i + 1, map.size());
         }
 
         for (int i = 0; i < size; ++i) {
-            assertTrue(map.Erase(i));
-            assertEquals(size - i - 1, map.Size());
+            assertTrue(map.erase(i));
+            assertEquals(size - i - 1, map.size());
         }
 
     }
 
     @Test
     @DisplayName("Random operations")
-    void Big() {
+    void big() {
 
         int size = 1000;
         for (int i = 0; i < size; i += 2) {
-            assertTrue(map.Insert(i, i));
+            assertTrue(map.insert(i, i));
         }
 
         for (int i = 0; i < size; ++i) {
             if (i % 2 == 0) {
 
-                Optional<Integer> found = map.Find(i);
+                Optional<Integer> found = map.find(i);
                 assertTrue(found.isPresent(), "not found " + i);
                 assertEquals(i, (int) found.get());
-                assertTrue(map.Erase(i), "not erased " + i);
+                assertTrue(map.erase(i), "not erased " + i);
 
             } else {
-                assertFalse(map.Find(i).isPresent());
-                assertFalse(map.Erase(i));
+                assertFalse(map.find(i).isPresent());
+                assertFalse(map.erase(i));
             }
         }
 
         for (int i = 0; i < size; ++i) {
-            assertFalse(map.Erase(i));
+            assertFalse(map.erase(i));
         }
     }
 }

@@ -1,5 +1,3 @@
-package task2;
-
 import java.util.*;
 
 public class HashMap<K extends Comparable<K>, V> {
@@ -12,7 +10,7 @@ public class HashMap<K extends Comparable<K>, V> {
         this.size = 0;
     }
 
-    public boolean Insert(K key, V value) {
+    public boolean insert(K key, V value) {
         int idx = key.hashCode() % map.size();
         if (map.get(idx).stream()
                 .anyMatch(el -> el.key.compareTo(key) == 0)) {
@@ -21,11 +19,11 @@ public class HashMap<K extends Comparable<K>, V> {
 
         map.get(idx).add(new Pair<>(key, value));
         size++;
-        Resize();
+        resize();
         return true;
     }
 
-    public boolean Erase(K key) {
+    public boolean erase(K key) {
         int idx = key.hashCode() % map.size();
 
         if (map.get(idx).removeIf(el -> el.key.compareTo(key) == 0)) {
@@ -36,7 +34,7 @@ public class HashMap<K extends Comparable<K>, V> {
         return false;
     }
 
-    public Optional<V> Find(K key) {
+    public Optional<V> find(K key) {
         int idx = key.hashCode() % map.size();
         return map.get(idx).stream()
                 .filter(el -> el.key.compareTo(key) == 0)
@@ -44,30 +42,30 @@ public class HashMap<K extends Comparable<K>, V> {
                 .findAny();
     }
 
-    public int Size() {
+    public int size() {
         return size;
     }
 
-    private void Resize() {
+    private void resize() {
 
         if (size < 4 * map.size() / 3) {
             return;
         }
 
-        int new_size = map.size() * 2;
-        var new_map = new ArrayList<LinkedList<Pair<K, V>>>();
-        for (int i = 0; i < new_size; ++i) {
-            new_map.add(new LinkedList<>());
+        int newSize = map.size() * 2;
+        var newMap = new ArrayList<LinkedList<Pair<K, V>>>();
+        for (int i = 0; i < newSize; ++i) {
+            newMap.add(new LinkedList<>());
         }
 
         for (var list : map) {
             for (var kv : list) {
-                new_map.get(kv.key.hashCode() % new_size)
+                newMap.get(kv.key.hashCode() % newSize)
                         .add(kv);
             }
         }
 
-        map = new_map;
+        map = newMap;
     }
 
     private ArrayList<LinkedList<Pair<K, V>>> map;
