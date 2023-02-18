@@ -4,7 +4,7 @@ import org.apache.commons.math3.util.CombinatoricsUtils;
 
 public class Secant {
     public static double sec(double x) {
-        double accuracy = 0.01;
+        double accuracy = 1E-3;
         double computedCos = cos(x, accuracy);
 
         if (Math.abs(computedCos) < accuracy) {
@@ -14,23 +14,26 @@ public class Secant {
         return 1 / cos(x, accuracy);
     }
 
-    public static double cos(double x, double accuracy) {
-        double previousResult = 0;
+    private static double cos(double x, double accuracy) {
+        x %= 2 * Math.PI;
         double result = computeCosTaylorSeriesMember(x, 0);
-        double currentAccuracy = 1;
+        double currentAccuracy = computeCurrentAccuracy(x, 1);
         int i = 1;
 
         while (currentAccuracy > accuracy) {
-            previousResult = result;
             result += computeCosTaylorSeriesMember(x, i);
-            currentAccuracy = Math.abs(result - previousResult);
+            currentAccuracy = computeCurrentAccuracy(x, i);
             i++;
         }
 
         return result;
     }
 
-    public static double computeCosTaylorSeriesMember(double x, int n) {
+    private static double computeCurrentAccuracy(double x, int n) {
+        return Math.pow(x, 2 * n) / CombinatoricsUtils.factorial(2 * n);
+    }
+
+    private static double computeCosTaylorSeriesMember(double x, int n) {
         if (n < 0) {
             throw new IllegalArgumentException("Argument n can't be negative: n = " + n);
         }
