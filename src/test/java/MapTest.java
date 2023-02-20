@@ -42,7 +42,7 @@ public class MapTest {
     private HashMap<Integer, Integer> map;
 
     @BeforeEach
-    void initMap() {
+    void setUp() {
         map = new HashMap<>(15);
     }
 

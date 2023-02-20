@@ -14,7 +14,7 @@ public class DomainTest {
     private static Chair chair;
 
     @BeforeEach
-    public void init() {
+    public void  setUp() {
         planet = new Planet(Color.GREEN, 1, 1);
         captain = new Captain(10);
         chair = new Chair(Color.GREEN, 2, false);
