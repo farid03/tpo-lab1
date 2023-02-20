@@ -1,11 +1,13 @@
 package task3;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class Chair {
-    Color color;
-    int comfortability;
+    private final Color color;
+    private final int comfortability;
     boolean sit;
 
     public Chair(final Color color, final int comfortability, final boolean sit) {

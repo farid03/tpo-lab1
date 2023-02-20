@@ -1,10 +1,7 @@
 package task3;
 
-import lombok.Data;
-
 import java.util.Optional;
 
-@Data
 public abstract class Man {
     protected int moodLevel;
     protected Mood moodType;

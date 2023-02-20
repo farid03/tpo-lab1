@@ -1,12 +1,14 @@
 package task3;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class Planet {
-    Color color;
-    int popularity;
-    int size;
+    private final Color color;
+    private int popularity;
+    private final int size;
     boolean destroyed;
 
     public Planet(final Color color, final int popularity, final int size) {

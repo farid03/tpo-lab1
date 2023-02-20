@@ -14,7 +14,7 @@ public class Captain extends Man {
         } else {
             planet.setDestroyed(true);
         }
-        this.setMoodType(Mood.ANNOYED);
+        this.moodType = Mood.ANNOYED;
         return true;
     }
 
@@ -50,5 +50,13 @@ public class Captain extends Man {
             this.chair = Optional.empty();
             return true;
         }
+    }
+
+    public Mood getMood() {
+        return this.moodType;
+    }
+
+    public int getMoodLevel() {
+        return this.moodLevel;
     }
 }
