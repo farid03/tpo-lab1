@@ -1,24 +1,30 @@
 package task3;
 
 import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 public class Planet {
+    @Getter
     private final Color color;
+    @Getter
     private int popularity;
-    private final int size;
-    boolean destroyed;
+    private boolean destroyed;
 
-    public Planet(final Color color, final int popularity, final int size) {
+    public Planet(final Color color, final int popularity) {
         this.color = color;
         this.popularity = popularity;
-        this.size = size;
         this.destroyed = false;
+    }
+
+    public void destroy() {
+        this.destroyed = true;
+        this.popularity = 0;
     }
 
     public boolean isDestroyed() {
         return destroyed;
+    }
+
+    public void relocatePopularity(final int relocatedCount) {
+        this.popularity += relocatedCount;
     }
 }
