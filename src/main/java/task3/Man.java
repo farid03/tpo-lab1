@@ -7,6 +7,7 @@ public abstract class Man {
     protected Mood moodType;
     protected Color bodyColor;
     protected Optional<Chair> chair;
+    protected Planet location;
 
     public Man(final int moodLevel, final Mood moodType, final Color bodyColor) {
         this.moodLevel = moodLevel;

@@ -12,7 +12,7 @@ public class Captain extends Man {
         if (planet.isDestroyed()) {
             return false;
         } else {
-            planet.setDestroyed(true);
+            planet.destroy();
         }
         this.moodType = Mood.ANNOYED;
         return true;
@@ -48,15 +48,25 @@ public class Captain extends Man {
         } else {
             this.chair.get().setSit(false);
             this.chair = Optional.empty();
+
             return true;
         }
     }
 
-    public Mood getMood() {
-        return this.moodType;
+    public void moveTo(final Planet planet) {
+        if (this.location != null) {
+            this.location.relocatePopularity(-1);
+        }
+
+        planet.relocatePopularity(1);
+        this.location = planet;
     }
 
     public int getMoodLevel() {
         return this.moodLevel;
+    }
+
+    public Planet getLocation() {
+        return this.location;
     }
 }
