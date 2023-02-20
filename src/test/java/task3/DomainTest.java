@@ -13,9 +13,9 @@ class DomainTest {
 
     @BeforeEach
     void  setUp() {
-        planet = new Planet(Color.GREEN, 1, 1);
+        planet = new Planet(Color.GREEN, 0);
         captain = new Captain(10);
-        chair = new Chair(Color.GREEN, 2, false);
+        chair = new Chair(false);
     }
 
     @Test
@@ -75,6 +75,47 @@ class DomainTest {
         assertFalse(captain.up());
         assertNull(captain.getChair());
         assertFalse(chair.isSit());
+    }
+
+    @Test
+    @DisplayName("Check Captain's first comeTo method")
+    void comeToTest() {
+        captain.moveTo(planet);
+        assertEquals(planet.getPopularity(), 1);
+        assertEquals(captain.getLocation(), planet);
+    }
+
+    @Test
+    @DisplayName("Check relocate from other planet")
+    void relocateFromOtherPlanetTest() {
+        captain.moveTo(planet);
+        assertEquals(planet.getPopularity(), 1);
+        assertEquals(captain.getLocation(), planet);
+
+        final Planet otherPlanet = new Planet(Color.BLACK, 0);
+        captain.moveTo(otherPlanet);
+        assertEquals(planet.getPopularity(), 0);
+        assertEquals(otherPlanet.getPopularity(), 1);
+        assertEquals(captain.getLocation(), otherPlanet);
+    }
+
+    @Test
+    @DisplayName("Basic emulation test")
+    void basicEmulationTest() {
+        final Planet otherPlanet = new Planet(Color.YELLOW, 0);
+        final Captain otherMan = new Captain(10);
+        final Emulation emulation = new Emulation(captain, otherMan, planet, otherPlanet, chair);
+
+        emulation.start();
+        assertAll(
+                () -> assertEquals(planet, captain.getLocation()),
+                () -> assertTrue(otherPlanet.isDestroyed()),
+                () -> assertEquals(planet, otherMan.getLocation()),
+                () -> assertEquals(15, captain.getMoodLevel()),
+                () -> assertEquals(5, otherMan.getMoodLevel()),
+                () -> assertEquals(captain.getChair(), chair),
+                () -> assertTrue(chair.isSit())
+        );
     }
 
     @Test
