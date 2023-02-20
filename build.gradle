@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'pmd'
+    id 'jacoco'
 }
 
 group 'ru.ifmo.se'
@@ -22,6 +24,57 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.26'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
 }
+
 test {
     useJUnitPlatform()
+//    dependsOn pmdMain, pmdTest
+//    finalizedBy jacocoTestReport
+//    finalizedBy jacocoTestCoverageVerification
 }
+
+//pmd {
+//    consoleOutput = true
+//    toolVersion = "6.54.0"
+//    ruleSetFiles = files("config/pmd.xml") // Исключения только через внешний файл
+//    ruleSets = []
+//}
+//
+//jacocoTestReport {
+//    reports {
+//        html.enabled true
+//    }
+//}
+//jacocoTestCoverageVerification {
+//    dependsOn test
+//    violationRules {
+//        rule {
+//            limit {
+//                counter = 'CLASS'
+//                value = 'MISSEDCOUNT'
+//                maximum = 0.9
+//            }
+//        }
+//        rule {
+//            limit {
+//                counter = 'METHOD'
+//                value = 'MISSEDCOUNT'
+//                maximum = 0.9
+//            }
+//        }
+//        rule {
+//            limit {
+//                counter = 'LINE'
+//                value = 'MISSEDCOUNT'
+//                maximum = 0.9
+//            }
+//        }
+//        rule {
+//            limit {
+//                counter = 'INSTRUCTION'
+//                value = 'COVEREDRATIO'
+//                minimum = 0.9
+//            }
+//        }
+//    }
+//}
+//check.dependsOn jacocoTestReport, jacocoTestCoverageVerification

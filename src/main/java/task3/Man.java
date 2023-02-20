@@ -11,7 +11,7 @@ public abstract class Man {
     protected Color bodyColor;
     protected Optional<Chair> chair;
 
-    public Man(int moodLevel, Mood moodType, Color bodyColor) {
+    public Man(final int moodLevel, final Mood moodType, final Color bodyColor) {
         this.moodLevel = moodLevel;
         this.moodType = moodType;
         this.bodyColor = bodyColor;

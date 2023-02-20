@@ -9,7 +9,7 @@ public class Planet {
     int size;
     boolean destroyed;
 
-    public Planet(Color color, int popularity, int size) {
+    public Planet(final Color color, final int popularity, final int size) {
         this.color = color;
         this.popularity = popularity;
         this.size = size;
